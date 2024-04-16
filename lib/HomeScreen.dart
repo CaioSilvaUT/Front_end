@@ -10,11 +10,12 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -23,7 +24,10 @@ class HomeScreen extends StatelessWidget {
               },
               child: Text('Cadastro de Usuário'),
             ),
-            ElevatedButton(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -32,7 +36,10 @@ class HomeScreen extends StatelessWidget {
               },
               child: Text('Cadastro de Atividade'),
             ),
-            ElevatedButton(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -41,8 +48,8 @@ class HomeScreen extends StatelessWidget {
               },
               child: Text('Cadastro de Entrega'),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
