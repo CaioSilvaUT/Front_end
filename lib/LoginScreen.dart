@@ -7,23 +7,19 @@ import 'dart:convert';
 class UserLoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
-  String? authToken; // Variável para armazenar o token de autenticação
+  String? authToken;
 
   Future<void> loginUser(BuildContext context) async {
     String email = emailController.text;
     String senha = senhaController.text;
-
-    // URL da sua rota de API para o login de usuários
     String url = 'http://localhost:3000/login_usuario';
 
     try {
-      // Converta os dados para JSON usando jsonEncode
       String jsonData = jsonEncode({
         'email': email,
         'senha': senha,
       });
 
-      // Faça uma solicitação POST para o servidor com os dados de login do usuário
       var response = await http.post(
         Uri.parse(url),
         headers: <String, String>{
@@ -33,13 +29,10 @@ class UserLoginScreen extends StatelessWidget {
       );
 
       if (response.statusCode == 200) {
-        // Login bem-sucedido
         print('Usuário autenticado com sucesso!');
-        // Obtenha o token do corpo da resposta
+        // Obtem o token do corpo da resposta
         var data = jsonDecode(response.body);
         authToken = data['token'];
-
-        // Navegar para a próxima tela do aplicativo após o login bem-sucedido
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen(//authToken: authToken
@@ -47,11 +40,9 @@ class UserLoginScreen extends StatelessWidget {
         );
 
       } else {
-        // Trate erros ou falhas de login
         print('Erro ao autenticar usuário: ${response.body}');
       }
     } catch (e) {
-      // Trate erros de conexão ou outras exceções
       print('Erro ao conectar ao servidor: $e');
     }
   }
@@ -73,7 +64,7 @@ class UserLoginScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey[400]!), // Definindo a cor da borda
+                    borderSide: BorderSide(color: Colors.grey[400]!),
                   ),
                 ),
               ),
@@ -83,7 +74,7 @@ class UserLoginScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Senha',
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey[400]!), // Definindo a cor da borda
+                    borderSide: BorderSide(color: Colors.grey[400]!),
                   ),
                 ),
                 obscureText: true,
@@ -92,9 +83,9 @@ class UserLoginScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => loginUser(context),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]!), // Definindo a cor de fundo
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]!), 
                   shape: MaterialStateProperty.all<OutlinedBorder>(
-                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), // Definindo o raio da borda
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), 
                   ),
                 ),
                 child: Text('Login'),
@@ -108,7 +99,7 @@ class UserLoginScreen extends StatelessWidget {
                   );
                 },
                 style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all<Color>(Colors.grey[800]!), // Definindo a cor do texto
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.grey[800]!), 
                 ),
                 child: Text('Crie uma conta'),
               ),

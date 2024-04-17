@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                backgroundColor: Colors.grey[300], // Definir a cor de fundo do botão como cinza claro
+                backgroundColor: Colors.grey[300],
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                   'Visualizar Atividades',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.black, // Definir a cor do texto como preto
+                    color: Colors.black,
                   ),
                 ),
               ),

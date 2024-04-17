@@ -27,7 +27,6 @@ class ActivityRegistrationScreen extends StatelessWidget {
 
       if (response.statusCode == 200) {
         // Cadastro bem-sucedido
-
       } else {
         print('Erro ao cadastrar atividade: ${response.body}');
       }
