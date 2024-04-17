@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'UserRegistrationScreen.dart';
 import 'ActivityRegistrationScreen.dart';
-import 'DeliveryRegistrationScreen.dart';
+import 'ActivityShowScreen.dart';
 
 class HomeScreen extends StatelessWidget {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -13,18 +11,6 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => UserRegistrationScreen()),
-                );
-              },
-              child: Text('Cadastro de Usuário'),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
@@ -43,10 +29,10 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DeliveryRegistrationScreen()),
+                  MaterialPageRoute(builder: (context) => ActivityShowScreen()),
                 );
               },
-              child: Text('Cadastro de Entrega'),
+              child: Text('Visualizar Atividades'),
             ),
           ),
         ],

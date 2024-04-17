@@ -1,22 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class DeliveryRegistrationScreen extends StatelessWidget {
+  final Map<String, dynamic> activity;
+
+  DeliveryRegistrationScreen({required this.activity});
+
+  Future<void> deliverActivity(BuildContext context) async {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro de Entrega'),
+        title: Text('Entrega de Atividade'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Implementar campos de seleção de usuário e entrega
+            Text(
+              'Atividade: ${activity['nome']}',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Descrição: ${activity['descricao']}',
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                // Implementar lógica de cadastro de entrega
-              },
-              child: Text('Cadastrar'),
+              onPressed: () => deliverActivity(context),
+              child: Text('Entregar Atividade'),
             ),
           ],
         ),
