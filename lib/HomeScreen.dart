@@ -3,6 +3,7 @@ import 'ActivityRegistrationScreen.dart';
 import 'ActivityShowScreen.dart';
 
 class HomeScreen extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -20,7 +21,22 @@ class HomeScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => ActivityRegistrationScreen()),
                 );
               },
-              child: Text('Cadastro de Atividade'),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                backgroundColor: Colors.grey[300], 
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: Text(
+                  'Cadastro de Atividade',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
             ),
           ),
           Padding(
@@ -32,7 +48,22 @@ class HomeScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => ActivityShowScreen()),
                 );
               },
-              child: Text('Visualizar Atividades'),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                backgroundColor: Colors.grey[300], // Definir a cor de fundo do botão como cinza claro
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: Text(
+                  'Visualizar Atividades',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.black, // Definir a cor do texto como preto
+                  ),
+                ),
+              ),
             ),
           ),
         ],

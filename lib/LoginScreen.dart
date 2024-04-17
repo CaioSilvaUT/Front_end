@@ -41,10 +41,10 @@ class UserLoginScreen extends StatelessWidget {
 
         // Navegar para a próxima tela do aplicativo após o login bem-sucedido
         Navigator.push(
-  context,
-  MaterialPageRoute(builder: (context) => HomeScreen()),
-);
-
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen(//authToken: authToken
+          )),
+        );
 
       } else {
         // Trate erros ou falhas de login
@@ -63,32 +63,57 @@ class UserLoginScreen extends StatelessWidget {
         title: Text('Login de Usuário'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            TextField(
-              controller: senhaController,
-              decoration: InputDecoration(labelText: 'Senha'),
-              obscureText: true,
-            ),
-            ElevatedButton(
-              onPressed: () => loginUser(context),
-              child: Text('Login'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => UserRegistrationScreen()),
-                );
-              },
-              child: Text('Crie uma conta'),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[400]!), // Definindo a cor da borda
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                controller: senhaController,
+                decoration: InputDecoration(
+                  labelText: 'Senha',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[400]!), // Definindo a cor da borda
+                  ),
+                ),
+                obscureText: true,
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () => loginUser(context),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]!), // Definindo a cor de fundo
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)), // Definindo o raio da borda
+                  ),
+                ),
+                child: Text('Login'),
+              ),
+              SizedBox(height: 10),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => UserRegistrationScreen()),
+                  );
+                },
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all<Color>(Colors.grey[800]!), // Definindo a cor do texto
+                ),
+                child: Text('Crie uma conta'),
+              ),
+            ],
+          ),
         ),
       ),
     );
