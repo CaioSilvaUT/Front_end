@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class DeliveryRegistrationScreen extends StatelessWidget {
-  final Map<String, dynamic> activity;
 
-  DeliveryRegistrationScreen({required this.activity});
+  final String? authToken; // Definindo o parâmetro authToken
+  // Adicione o construtor que recebe o authToken
+  final Map<String, dynamic> activity;
+  DeliveryRegistrationScreen({required this.activity, Key? key, this.authToken}) : super(key: key);
 
   Future<void> deliverActivity(BuildContext context) async {
     Navigator.pop(context);
