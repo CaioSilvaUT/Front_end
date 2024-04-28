@@ -35,7 +35,7 @@ class UserLoginScreen extends StatelessWidget {
         authToken = data['token'];
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen(//authToken: authToken
+          MaterialPageRoute(builder: (context) => HomeScreen(authToken: authToken
           )),
         );
 

@@ -5,6 +5,10 @@ import 'dart:convert';
 class ActivityRegistrationScreen extends StatelessWidget {
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController descController = TextEditingController();
+  final String? authToken; // Definindo o parâmetro authToken
+  // Adicione o construtor que recebe o authToken
+  ActivityRegistrationScreen({Key? key, this.authToken}) : super(key: key);
+
 
   Future<void> registerActivity(BuildContext context) async {
     String nome = nomeController.text;

@@ -5,12 +5,15 @@ import 'DeliveryRegistrationScreen.dart';
 
 class ActivityShowScreen extends StatefulWidget {
   @override
+  final String? authToken; // Definindo o parâmetro authToken
+  // Adicione o construtor que recebe o authToken
+  const ActivityShowScreen({Key? key, this.authToken}) : super(key: key);
   _ActivityShowScreenState createState() => _ActivityShowScreenState();
 }
 
 class _ActivityShowScreenState extends State<ActivityShowScreen> {
   List<dynamic> activities = [];
-
+  
   @override
   void initState() {
     super.initState();
