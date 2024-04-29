@@ -8,17 +8,13 @@ class HomeScreen extends StatelessWidget {
   final String? authToken;
 
   const HomeScreen({Key? key, this.authToken}) : super(key: key);
-
-  // Função para verificar se o token está expirado
   bool get isTokenExpired {
     if (authToken == null) {
-      return true; // Se o token não estiver presente, consideramos como expirado
+      return true;
     }
 
     return Jwt.isExpired(authToken!);
   }
-
-  // Função para lidar com a navegação com base na validade do token
   void navigateToActivityRegistration(BuildContext context) {
     if (!isTokenExpired) {
       Navigator.push(
@@ -26,7 +22,6 @@ class HomeScreen extends StatelessWidget {
         MaterialPageRoute(builder: (context) => ActivityRegistrationScreen(authToken: authToken)),
       );
     } else {
-      // Mostrar mensagem de erro e redirecionar para a tela de login
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -34,13 +29,12 @@ class HomeScreen extends StatelessWidget {
           content: Text('Você precisa estar logado para acessar esta funcionalidade.'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context), // Fechar o diálogo
+              onPressed: () => Navigator.pop(context),
               child: Text('OK'),
             ),
           ],
         ),
       );
-      // Redirecionar para a tela de login após fechar o diálogo
       Future.delayed(Duration(milliseconds: 1500), () {
         Navigator.pushReplacement(
           context,
@@ -57,7 +51,6 @@ class HomeScreen extends StatelessWidget {
         MaterialPageRoute(builder: (context) => ActivityShowScreen(authToken: authToken)),
       );
     } else {
-      // Mostrar mensagem de erro e redirecionar para a tela de login
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -65,13 +58,12 @@ class HomeScreen extends StatelessWidget {
           content: Text('Você precisa estar logado para acessar esta funcionalidade.'),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context), // Fechar o diálogo
+              onPressed: () => Navigator.pop(context),
               child: Text('OK'),
             ),
           ],
         ),
       );
-      // Redirecionar para a tela de login após fechar o diálogo
       Future.delayed(Duration(milliseconds: 1500), () {
         Navigator.pushReplacement(
           context,
