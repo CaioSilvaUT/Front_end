@@ -4,16 +4,16 @@ import 'dart:convert';
 import 'DeliveryRegistrationScreen.dart';
 
 class ActivityShowScreen extends StatefulWidget {
-  @override
-  final String? authToken; // Definindo o parâmetro authToken
-  // Adicione o construtor que recebe o authToken
+  final String? authToken;
   const ActivityShowScreen({Key? key, this.authToken}) : super(key: key);
+
+  @override
   _ActivityShowScreenState createState() => _ActivityShowScreenState();
 }
 
 class _ActivityShowScreenState extends State<ActivityShowScreen> {
   List<dynamic> activities = [];
-  
+
   @override
   void initState() {
     super.initState();
@@ -24,10 +24,16 @@ class _ActivityShowScreenState extends State<ActivityShowScreen> {
     String url = 'http://localhost:3000/activities';
 
     try {
-      var response = await http.get(Uri.parse(url));
+      var response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Authorization': 'Bearer ${widget.authToken}',
+        },
+      );
       if (response.statusCode == 200) {
+        final List<dynamic> allActivities = jsonDecode(response.body);
         setState(() {
-          activities = jsonDecode(response.body);
+          activities = allActivities.where((activity) => activity['userId'] != getCurrentUserId()).toList();
         });
       } else {
         print('Erro ao recuperar atividades: ${response.body}');
@@ -35,6 +41,14 @@ class _ActivityShowScreenState extends State<ActivityShowScreen> {
     } catch (e) {
       print('Erro de conexão: $e');
     }
+  }
+  int getCurrentUserId() {
+    if (widget.authToken != null) {
+      final tokenParts = widget.authToken!.split('.');
+      final payload = jsonDecode(utf8.decode(base64Url.decode(base64Url.normalize(tokenParts[1]))));
+      return payload['userId'];
+    }
+    return 0;
   }
 
   @override
@@ -60,7 +74,10 @@ class _ActivityShowScreenState extends State<ActivityShowScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DeliveryRegistrationScreen(activity: activities[index]),
+                    builder: (context) => DeliveryRegistrationScreen(
+                      activity: activities[index],
+                      authToken: widget.authToken,
+                    ),
                   ),
                 );
               },
