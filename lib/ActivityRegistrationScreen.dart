@@ -5,14 +5,14 @@ import 'dart:convert';
 class ActivityRegistrationScreen extends StatelessWidget {
   final TextEditingController nomeController = TextEditingController();
   final TextEditingController descController = TextEditingController();
-  final String? authToken; // Definindo o parâmetro authToken
-  // Adicione o construtor que recebe o authToken
+  final TextEditingController dataEntregaController = TextEditingController();
+  final String? authToken;
   ActivityRegistrationScreen({Key? key, this.authToken}) : super(key: key);
-
 
   Future<void> registerActivity(BuildContext context) async {
     String nome = nomeController.text;
     String descricao = descController.text;
+    String dataEntrega = dataEntregaController.text;
 
     String url = 'http://localhost:3000/cadastrar_atividade';
 
@@ -20,6 +20,7 @@ class ActivityRegistrationScreen extends StatelessWidget {
       String jsonData = jsonEncode({
         'nome': nome,
         'descricao': descricao,
+        'dataEntrega': dataEntrega,
       });
       var response = await http.post(
         Uri.parse(url),
@@ -30,7 +31,6 @@ class ActivityRegistrationScreen extends StatelessWidget {
       );
 
       if (response.statusCode == 200) {
-        // Cadastro bem-sucedido
       } else {
         print('Erro ao cadastrar atividade: ${response.body}');
       }
@@ -65,6 +65,17 @@ class ActivityRegistrationScreen extends StatelessWidget {
                 controller: descController,
                 decoration: InputDecoration(
                   labelText: 'Descrição',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[400]!),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                controller: dataEntregaController,
+                keyboardType: TextInputType.datetime,
+                decoration: InputDecoration(
+                  labelText: 'Data de Entrega',
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey[400]!),
                   ),

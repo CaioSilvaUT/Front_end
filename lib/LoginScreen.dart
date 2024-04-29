@@ -30,7 +30,6 @@ class UserLoginScreen extends StatelessWidget {
 
       if (response.statusCode == 200) {
         print('Usuário autenticado com sucesso!');
-        // Obtem o token do corpo da resposta
         var data = jsonDecode(response.body);
         authToken = data['token'];
         Navigator.push(
